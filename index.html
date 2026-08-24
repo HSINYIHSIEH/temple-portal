@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>光明堂 線上服務中心</title>
+<meta name="description" content="光明堂線上服務入口：經文學習、活動報名、LINE官方帳號，一站集中。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F4F1E9;
+    --surface: #FFFFFF;
+    --surface-raised: #FFFFFF;
+    --ink: #26302B;
+    --ink-soft: #66756D;
+    --seal: #5C7A63;
+    --seal-soft: rgba(92, 122, 99, 0.1);
+    --gold: #C9A063;
+    --gold-soft: rgba(201, 160, 99, 0.12);
+    --border: rgba(38, 48, 43, 0.12);
+    --border-strong: rgba(38, 48, 43, 0.26);
+    --shadow: rgba(38, 48, 43, 0.16);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #14180F;
+      --surface: #1D2318;
+      --surface-raised: #232B1D;
+      --ink: #EDEAD9;
+      --ink-soft: #A9A896;
+      --seal: #86AE8F;
+      --seal-soft: rgba(134, 174, 143, 0.14);
+      --gold: #E0B36C;
+      --gold-soft: rgba(224, 179, 108, 0.14);
+      --border: rgba(237, 234, 217, 0.14);
+      --border-strong: rgba(237, 234, 217, 0.28);
+      --shadow: rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #14180F;
+    --surface: #1D2318;
+    --surface-raised: #232B1D;
+    --ink: #EDEAD9;
+    --ink-soft: #A9A896;
+    --seal: #86AE8F;
+    --seal-soft: rgba(134, 174, 143, 0.14);
+    --gold: #E0B36C;
+    --gold-soft: rgba(224, 179, 108, 0.14);
+    --border: rgba(237, 234, 217, 0.14);
+    --border-strong: rgba(237, 234, 217, 0.28);
+    --shadow: rgba(0, 0, 0, 0.4);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Noto Sans TC", "PingFang TC", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.7;
+    background-image:
+      radial-gradient(circle at 12% 8%, var(--seal-soft), transparent 42%),
+      radial-gradient(circle at 88% 92%, var(--gold-soft), transparent 45%);
+    background-repeat: no-repeat;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .fade-in {
+      animation: fadeRise 0.9s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+    }
+    .fade-in.delay-1 { animation-delay: 0.12s; }
+    .fade-in.delay-2 { animation-delay: 0.24s; }
+    @keyframes fadeRise {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  }
+
+  a { color: inherit; }
+
+  .wrap {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 1.75rem;
+  }
+
+  /* ---------- top bar ---------- */
+  .topbar {
+    padding: 1.75rem 0 0;
+  }
+  .topbar .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .mark {
+    font-family: "Noto Sans TC", sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.14em;
+    color: var(--ink-soft);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+  }
+  .mark img {
+    height: 22px;
+    width: auto;
+    display: block;
+  }
+  .mark strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* ---------- hero ---------- */
+  .hero {
+    padding: 4rem 0 4.5rem;
+    text-align: center;
+  }
+  .hero h1 {
+    margin: 0 0 0.4rem;
+    display: flex;
+    justify-content: center;
+  }
+  .logo-plaque {
+    display: inline-flex;
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 1.4rem 2rem;
+    box-shadow: 0 16px 34px -22px var(--shadow);
+  }
+  .logo-plaque img {
+    display: block;
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+  }
+  .hero .sub {
+    margin: 1.1rem 0 0;
+    font-family: "Noto Sans TC", sans-serif;
+    font-size: 1.05rem;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+  }
+  .hero .divider {
+    width: 42px;
+    height: 2px;
+    background: var(--gold);
+    margin: 1.9rem auto;
+    border: none;
+    opacity: 0.7;
+  }
+  .hero .offerings {
+    font-family: "Noto Sans TC", sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    color: var(--ink-soft);
+  }
+  .hero .offerings span { white-space: nowrap; }
+  .hero .offerings .sep {
+    color: var(--gold);
+    margin: 0 0.6em;
+    opacity: 0.8;
+  }
+
+  /* ---------- services ---------- */
+  .services {
+    padding: 0 0 6rem;
+  }
+  .eyebrow {
+    font-family: "Noto Sans TC", sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    color: var(--gold);
+    text-align: center;
+    margin: 0 0 2.5rem;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+  @media (max-width: 760px) {
+    .cards { grid-template-columns: 1fr; }
+  }
+
+  .card {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    padding: 2.1rem 1.6rem 1.9rem;
+    text-decoration: none;
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    box-shadow: 0 14px 34px -24px var(--shadow);
+    transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.3, 1), border-color 0.35s, box-shadow 0.35s;
+  }
+  .card:hover, .card:focus-visible {
+    transform: translateY(-4px);
+    border-color: var(--seal);
+    box-shadow: 0 18px 34px -20px var(--shadow);
+    outline: none;
+  }
+  .card:focus-visible {
+    outline: 2px solid var(--seal);
+    outline-offset: 3px;
+  }
+
+  .card .icon {
+    width: 34px;
+    height: 34px;
+    color: var(--seal);
+  }
+  .card .icon svg { width: 100%; height: 100%; }
+
+  .card h2 {
+    font-family: "Noto Serif TC", serif;
+    font-size: 1.28rem;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.4;
+  }
+  .card p {
+    font-family: "Noto Sans TC", sans-serif;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    margin: 0;
+    flex-grow: 1;
+    line-height: 1.75;
+  }
+
+  .card .go {
+    font-family: "Noto Sans TC", sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    color: var(--seal);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+  }
+  .card .go svg {
+    width: 13px;
+    height: 13px;
+    transition: transform 0.3s;
+  }
+  .card:hover .go svg { transform: translateX(3px); }
+
+  /* motif badge */
+  .stamp {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 26px;
+    height: 26px;
+    border-radius: 8px;
+    background: var(--seal-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Noto Serif TC", serif;
+    font-size: 0.68rem;
+    color: var(--seal);
+  }
+
+  /* ---------- footer ---------- */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2.2rem 0 3rem;
+  }
+  footer .wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    text-align: center;
+  }
+  footer .name {
+    font-family: "Noto Serif TC", serif;
+    font-size: 0.95rem;
+    color: var(--ink);
+  }
+  footer .note {
+    font-family: "Noto Sans TC", sans-serif;
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.03em;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="wrap">
+      <span class="mark"><img src="assets/logo.png" alt=""> <strong>光明堂</strong> · 線上服務</span>
+    </div>
+  </div>
+
+  <header class="hero">
+    <div class="wrap">
+      <h1 class="fade-in">
+        <span class="logo-plaque"><img src="assets/logo.png" alt="光明堂 GUANGMING TANG"></span>
+      </h1>
+      <p class="sub fade-in delay-1">線 上 服 務 中 心</p>
+      <hr class="divider fade-in delay-1">
+      <p class="offerings fade-in delay-2">
+        <span>經文學習</span><span class="sep">·</span><span>活動報名</span><span class="sep">·</span><span>即時聯繫</span>
+      </p>
+    </div>
+  </header>
+
+  <section class="services">
+    <div class="wrap">
+      <p class="eyebrow">服 務 入 口</p>
+      <div class="cards">
+
+        <a class="card" href="https://scripture-app-y6ab.onrender.com/" target="_blank" rel="noopener">
+          <div class="stamp">學</div>
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 5.5C4 4.67 4.67 4 5.5 4H12v16H5.5A1.5 1.5 0 0 1 4 18.5v-13Z"/>
+              <path d="M20 5.5c0-.83-.67-1.5-1.5-1.5H12v16h6.5a1.5 1.5 0 0 0 1.5-1.5v-13Z"/>
+              <path d="M12 4v16"/>
+            </svg>
+          </span>
+          <h2>經文學習</h2>
+          <p>隨時隨地閱讀經文，記錄學習進度，深入法義。</p>
+          <span class="go">前往學習
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </a>
+
+        <a class="card" href="https://139-59-234-29.nip.io/" target="_blank" rel="noopener">
+          <div class="stamp">會</div>
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3.5" y="5" width="17" height="15.5" rx="0.5"/>
+              <path d="M3.5 9.5h17"/>
+              <path d="M8 3v3.5M16 3v3.5"/>
+              <path d="M8 13.5h2.5M8 17h2.5M13.5 13.5H16M13.5 17H16"/>
+            </svg>
+          </span>
+          <h2>光明堂活動報名</h2>
+          <p>查看法會與活動場次，線上完成報名，掌握最新時程。</p>
+          <span class="go">前往報名
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </a>
+
+        <a class="card" href="https://lin.ee/tcFBmiM" target="_blank" rel="noopener">
+          <div class="stamp">訊</div>
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 5.5C4 4.67 4.67 4 5.5 4h13A1.5 1.5 0 0 1 20 5.5v9A1.5 1.5 0 0 1 18.5 16H9l-4 4v-4H5.5A1.5 1.5 0 0 1 4 14.5v-9Z"/>
+            </svg>
+          </span>
+          <h2>LINE 官方帳號</h2>
+          <p>加入好友，第一時間收到公告與活動通知。</p>
+          <span class="go">加入好友
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p class="name">光明堂</p>
+      <p class="note">感謝您的蒞臨</p>
+    </div>
+  </footer>
+
+</body>
+</html>
