@@ -24,23 +24,7 @@
     --shadow: rgba(43, 42, 37, 0.18);
   }
 
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #1C1B16;
-      --surface: #242319;
-      --surface-raised: #2A2820;
-      --ink: #EDE9DC;
-      --ink-soft: #A8A395;
-      --seal: #9BAE83;
-      --seal-soft: rgba(155, 174, 131, 0.14);
-      --gold: #D4B36C;
-      --gold-soft: rgba(212, 179, 108, 0.14);
-      --border: rgba(237, 233, 220, 0.14);
-      --border-strong: rgba(237, 233, 220, 0.28);
-      --shadow: rgba(0, 0, 0, 0.4);
-    }
-  }
-
+  /* 固定使用淺色卡其橄欖，不隨系統深色模式自動切換 */
   :root[data-theme="dark"] {
     --bg: #1C1B16;
     --surface: #242319;
